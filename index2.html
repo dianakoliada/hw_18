@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home work 18</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            outline: none;
+        }
+
+        body {
+            background-color: #097388;
+        }
+
+        div {
+            margin: 10% auto;
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button {
+            position: absolute;
+            top: 50%;
+            text-transform: uppercase;
+            display: inline-block;
+            width: 300px;
+            line-height: 50px;
+            border: none;
+            border-radius: 10px;
+            transition: all .5s;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        button:hover {
+            cursor: pointer;
+            transform: scale(.9);
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            transition: all .5s;
+        }
+    </style>
+</head>
+<body>
+    <div class="page__item">
+        <button id="button" type="button">in air</button>
+    </div>
+    
+    <script>
+        'use strict'
+
+        //1.
+
+        const btn = document.getElementById('button');
+
+        function Plane(isName, isFlying) {
+            this.name = isName;
+            this.status = isFlying;
+
+            this.takeOff = function () {
+                return this.isFlying = true;
+                console.log('true');
+            }
+
+            this.land = function () {
+                return this.isFlying = false;
+                console.log('false');
+            }
+        };
+
+        let result = new Plane();
+        // console.log(result);
+
+        let airport = {
+            planes: [
+                new Plane('Falcon', true),
+                new Plane('Hunter', false),
+                new Plane('Falcon F-20', true),
+            ],
+
+            getFlyingPlanes() {
+                let res = this.planes.filter((el) => {
+                    return el.status === true;
+                });
+                console.log(res);
+            }
+        };
+
+        let seconsPlanesShift = {
+            planes: [
+                new Plane('Delta Air Lines', false),
+                new Plane('United Airlines', true),
+                new Plane('Southwest Airlines', true),
+            ],
+        };
+
+        let thirdPlanesShift = {
+            planes: [
+                new Plane('Air France-KLM', true),
+                new Plane('Singapore Airlines Cargo1', false),
+            ],
+        };
+
+        airport.planes.push(...seconsPlanesShift.planes, ...thirdPlanesShift.planes);
+        console.log(airport.planes);
+
+        btn.addEventListener('click', () => {
+            airport.getFlyingPlanes();
+        });
+        
+
+        //2.
+        function User(name, surname) {
+            this.name = name;
+            this.surname = surname;
+
+            this.getFullName = function() {
+                return `${this.name} ${this.surname}`;
+            }
+        };
+        const user = new User('Alex', 'Smith');
+        // console.log(user.getFullName());
+
+        function Student(name, surname, year, currentYear) {
+            this.name = name;
+            this.surname = surname;
+            this.year = year;
+            this.currentYear = currentYear;
+
+            this.getCourse = function() {
+                return this.currentYear - this.year;
+            }
+        };
+
+        const student = new Student('Amy', 'Lee', 2018, 2023);
+
+        student.__proto__ = user;
+        console.log(`full name: ${student.getFullName()}`);
+        console.log(`current course: ${student.getCourse()}`);
+
+
+        //3.
+/*
+ К стандартному классу String добавте метод countAllUpperCase, который будеет подсчитывать все заглавные буквы в строке.
+*/
+        class String {
+            someVar = '';
+
+            constructor(someVar) {
+                this.someVar = someVar;
+            }
+
+            get countAllUpperCase() {
+                // return this.someVar.toUpperCase();
+                return this.someVar.length;
+            }
+        }
+
+        const someString = new String('MyTRpHK'); //5
+        console.log(someString.someVar);
+        console.log(someString.countAllUpperCase);
+
+
+    </script>
+</body>
+</html>
