@@ -146,27 +146,23 @@
 
 
         //3.
-/*
- К стандартному классу String добавте метод countAllUpperCase, который будеет подсчитывать все заглавные буквы в строке.
-*/
         class String {
-            someVar = '';
+            str = '';
 
-            constructor(someVar) {
-                this.someVar = someVar;
+            constructor(str) {
+                this.str = str;
             }
 
-            get countAllUpperCase() {
-                // return this.someVar.toUpperCase();
-                return this.someVar.length;
+            countAllUpperCase() {
+                let count = [...this.str].filter(el => el === el.toUpperCase()).length;
+                console.log(`The number of CAPITAL letters: ${count}`);
+                return;
             }
         }
 
-        const someString = new String('MyTRpHK'); //5
-        console.log(someString.someVar);
-        console.log(someString.countAllUpperCase);
-
-
+        const someString = new String('SoMeSTrinG'); //5
+        someString.countAllUpperCase();
+        console.log(someString.str);
     </script>
 </body>
 </html>
